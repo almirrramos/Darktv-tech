@@ -203,52 +203,46 @@
 <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
 
 <script>
-/* URLs dos 4 vídeos */
-const videoSources = [
-  "https://d1muf25xa01so8hp15.s27-usa-cloudfront-net.online/token/5d9837787d05d9f11d68f0bc2b53699c/bbb1.m3u8"
-];
+/* URL do vídeo */
+const videoSource = "https://d1muf25xa01so8hp15.s27-usa-cloudfront-net.online/token/5d9837787d05d9f11d68f0bc2b53699c/bbb1.m3u8";
 
-/* Seleciona todos os elementos repetidos */
-const videos   = document.querySelectorAll("#video");
-const posters  = document.querySelectorAll("#video-poster");
-const buttons  = document.querySelectorAll("#play-button");
+/* Seleciona os elementos */
+const video   = document.getElementById("video");
+const poster  = document.getElementById("video-poster");
+const playBtn = document.getElementById("play-button");
 
-/* Aplica a lógica para cada player */
-videos.forEach((video, index) => {
-  const poster = posters[index];
-  const playBtn = buttons[index];
-  const src = videoSources[index];
+video.muted = true;
+video.setAttribute("playsinline", "true");
 
-  video.muted = true;
-  video.setAttribute("playsinline", "true");
+function startVideo() {
+  poster.style.display = "none";
+  playBtn.style.display = "none";
 
-  function startVideo() {
-    poster.style.display = "none";
-    playBtn.style.display = "none";
-
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(src);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, () => {
-        video.play();
-      });
-    } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
-      video.src = src;
+  if (Hls.isSupported()) {
+    const hls = new Hls();
+    hls.loadSource(videoSource);
+    hls.attachMedia(video);
+    hls.on(Hls.Events.MANIFEST_PARSED, () => {
       video.play();
-    } else {
-      alert("Seu navegador não suporta vídeo HLS.");
-    }
+    });
+  } else if (video.canPlayType("application/vnd.apple.mpegurl")) {
+    video.src = videoSource;
+    video.play();
+  } else {
+    alert("Seu navegador não suporta vídeo HLS.");
   }
+}
 
-  playBtn.addEventListener("click", startVideo);
-  poster.addEventListener("click", startVideo);
-});
+/* Eventos */
+playBtn.addEventListener("click", startVideo);
+poster.addEventListener("click", startVideo);
 </script>
+
 
   
 </body>
 </html>
+
 
 
 
