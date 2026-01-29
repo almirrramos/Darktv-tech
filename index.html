@@ -144,6 +144,7 @@
       margin-top: 40px;
       border-radius: 55px;
       padding: 15px;
+      transition: background-color 0.3s ease;
         
       }
       .camera{
@@ -160,7 +161,15 @@
 }
 .mais:hover {
   background-color: #dd5e10;
-  transform: scale(1.07);
+  animation: pulse 0.8s infinite alternate;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
 }
 
   </style>
@@ -244,6 +253,7 @@ poster.addEventListener("click", startVideo);
   
 </body>
 </html>
+
 
 
 
