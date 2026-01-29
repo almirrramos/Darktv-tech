@@ -144,7 +144,7 @@
       margin-top: 40px;
       border-radius: 55px;
       padding: 15px;
-      transition: background-color 0.3s ease;
+      animation: pulse 1.2s infinite alternate;
         
       }
       .camera{
@@ -166,11 +166,14 @@
 @keyframes pulse {
   0% {
     transform: scale(1);
+    box-shadow: 0 0 0 rgba(221, 94, 16, 0.0);
   }
   100% {
     transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(221, 94, 16, 0.7);
   }
 }
+
 
   </style>
 </head>
@@ -253,6 +256,7 @@ poster.addEventListener("click", startVideo);
   
 </body>
 </html>
+
 
 
 
